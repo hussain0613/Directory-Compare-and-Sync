@@ -1,4 +1,4 @@
-import os, glob, filecmp, shutil
+import os, filecmp, shutil
 
 
 class Dircmp:
@@ -54,23 +54,35 @@ class Dircmp:
             Copies files from directory *d2* to *d1* that are in *only_righ_files* and *only_right_dirs*
             If *avoid_file* and *avoid_dirs* are given then these files and subdirectories are skipped while copying
             *avoid_files* and *avoid_dirs* should be lists or tuples
+            
             Returns nothing
 
         sync_right(self, avoid_files = None, avoid_dirs = None):
             Copies files from directory *d1* to *d2* that are in *only_left_files* and *only_left_dirs*
             If *avoid_file* and *avoid_dirs* are given then these files and subdirectories are skipped while copying
             *avoid_files* and *avoid_dirs* should be lists or tuples
+            
             Returns nothing
             
         sync(self, avoid_files = None, avoid_dirs = None):
             Copies files from directory *d1* to *d2* and vice versa
-            If *avoid_file* and *avoid_dirs* are given then these files and subdirectories are skipped while copying
+            If *avoid_files* and *avoid_dirs* are given then these files and subdirectories are skipped while copying
             *avoid_files* and *avoid_dirs* should be lists or tuples
+            
             Returns nothing
+    
 
-    Note: No aoutomatic action are taken on the 'funny' file while syncing
-          However, actions can be taken on these files with the _sync method.
-          See _sync.__doc__
+    Notes: 
+        1: No aoutomatic action are taken on the 'funny' file while syncing
+           However, actions can be taken on these files with the _sync method.
+           See _sync.__doc__
+        
+        2. os.walk hase been used to gather the file and subdiretory names.
+        
+        3. filecmp.cmp (shallow = True) has been used to compare to files with same name.
+        
+        4. shuitl.copy2 has been used to copy files from one directory to another for syncing.
+           os.mkdir has been used to create subdirectories
     '''
 
     def __init__(self, d1, d2):
