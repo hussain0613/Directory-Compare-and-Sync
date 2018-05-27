@@ -297,17 +297,4 @@ class Dircmp:
         return getattr(self, attr)    
     
 
-if __name__ == '__main__':
-    d1 = "D:/pdf/"
-    d2 = "G:/pdf/"
-
-    x = Dircmp(d1, d2)
-    print(x.only_left_files)
-    print(x.only_right_files)
-    #print(x.d2c())
-    #print(x.common_but())
-    #x.sync_d1()
-
-
-
-    
+   
